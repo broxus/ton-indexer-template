@@ -5,7 +5,7 @@ use anyhow::{Context, Result};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 
-/// Main application config (full). Used to run relay
+/// Main application config
 #[derive(Serialize, Deserialize)]
 pub struct AppConfig {
     /// TON node settings

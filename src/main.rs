@@ -24,7 +24,7 @@ enum Subcommand {
 }
 
 #[derive(Debug, PartialEq, argh::FromArgs)]
-/// Starts relay node
+/// Starts service
 #[argh(subcommand, name = "run")]
 struct CmdRun {
     /// path to config file ('config.yaml' by default)
