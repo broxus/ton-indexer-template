@@ -46,6 +46,12 @@ pub struct NodeConfig {
 
     /// Whether old blocks will be removed on each new key block
     pub blocks_gc_enabled: bool,
+
+    adnl_options: tiny_adnl::AdnlNodeOptions,
+    rldp_options: tiny_adnl::RldpNodeOptions,
+    dht_options: tiny_adnl::DhtNodeOptions,
+    neighbours_options: tiny_adnl::NeighboursOptions,
+    overlay_shard_options: tiny_adnl::OverlayShardOptions,
 }
 
 impl NodeConfig {
@@ -88,11 +94,11 @@ impl NodeConfig {
             old_blocks_policy: Default::default(),
             max_db_memory_usage: self.max_db_memory_usage,
             parallel_archive_downloads: self.parallel_archive_downloads,
-            adnl_options: Default::default(),
-            rldp_options: Default::default(),
-            dht_options: Default::default(),
-            neighbours_options: Default::default(),
-            overlay_shard_options: Default::default(),
+            adnl_options: self.adnl_options,
+            rldp_options: self.rldp_options,
+            dht_options: self.dht_options,
+            neighbours_options: self.neighbours_options,
+            overlay_shard_options: self.overlay_shard_options,
         })
     }
 }
@@ -108,6 +114,17 @@ impl Default for NodeConfig {
             parallel_archive_downloads: 16,
             states_gc_enabled: true,
             blocks_gc_enabled: true,
+            adnl_options: Default::default(),
+            rldp_options: tiny_adnl::RldpNodeOptions {
+                force_compression: true,
+                ..Default::default()
+            },
+            dht_options: Default::default(),
+            neighbours_options: Default::default(),
+            overlay_shard_options: tiny_adnl::OverlayShardOptions {
+                force_compression: true,
+                ..Default::default()
+            },
         }
     }
 }
